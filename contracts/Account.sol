@@ -25,7 +25,6 @@ contract Account is IAccount {
             entryPoint.depositTo{value: missingAccountFunds}(address(this));
         }        
         address recovered = ECDSA.recover(MessageHashUtils.toEthSignedMessageHash(abi.encodePacked(userOpHash)), userOp.signature);
-        console.log("recovered", recovered);
         return owner == recovered ? 0 : 1;
     }
 
